@@ -22,6 +22,9 @@ twitter_url: "https://twitter.com/liamcottle"
 contact_url: "https://liamcottle.com/contact"
 linkedin_url: "https://www.linkedin.com/in/liamcottle/"
 
+# analytics
+google_analytics_measurement_id: "G-S3724X6D5M"
+
 plugins:
   - jekyll-feed
   - jekyll-postcss
