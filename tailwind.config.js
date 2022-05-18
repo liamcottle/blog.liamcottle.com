@@ -8,8 +8,12 @@ module.exports = {
         './*.html',
     ],
     theme: {
-        theme: {
-            extend: {},
+        extend: {
+            colors: {
+                discord: '#5865F2',
+                github: '#333333',
+                twitter: '#1DA1F2',
+            },
         },
     },
     plugins: []
