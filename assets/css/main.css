@@ -31,7 +31,7 @@
         @apply underline underline-offset-4 font-semibold text-gray-700 decoration-gray-300 hover:decoration-gray-500;
     }
 
-    /* all code blocks that are not inside a <pre> tag as they're already highlighted by rouge */
+    /* all code blocks that are not inside a <pre> tag as they are already highlighted by rouge */
     .post > p > code {
         @apply text-sm bg-gray-200 px-1 py-0.5 rounded;
     }
