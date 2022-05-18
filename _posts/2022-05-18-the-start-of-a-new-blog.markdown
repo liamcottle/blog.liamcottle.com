@@ -23,7 +23,7 @@ I'm wanting a place that I can share my ideas and knowledge with the world in a 
 
 ***What now?***
 
-If you're interested in following along with whatever I decide to write here, feel free to add my [RSS Feed][rss-feed] to your favourite reader app, or add the site to your bookmarks.
+If you're interested in following along with whatever I decide to write here, feel free to add my [Atom Feed][atom-feed] to your favourite reader app, or add the site to your bookmarks.
 
 ***How else can I follow you?***
 
@@ -36,4 +36,4 @@ So, let's try this blogging thing, huh?
 [discord-invite]: {{ site.discord_url }}
 [github]: {{ site.github_url }}
 [twitter]: {{ site.twitter_url }}
-[rss-feed]: {{ '/feed.xml' | relative_url }}
+[atom-feed]: {{ '/feed.xml' | relative_url }}
