@@ -10,20 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: 📂 Checkout Repo
+      - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: 💎 Setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
 
-      - name: 🔨 Install Dependencies & Build Site
+      - name: Install NodeJS Dependencies
+        run: npm install
+
+      - name: Build Jekyll Site
         uses: limjh16/jekyll-action-ts@v2
         with:
           enable_cache: true
 
-      - name: 🚀 Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
