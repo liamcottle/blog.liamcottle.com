@@ -13,8 +13,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- styles -->
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+  {% assign cacheBust = site.time | date:'?v=%s' %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | append: cacheBust }}">
+  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url | append: cacheBust }}">
 
   <!-- Primary Meta Tags -->
   <title>{{ page_title }}</title>
