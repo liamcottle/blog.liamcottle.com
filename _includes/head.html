@@ -1,0 +1,38 @@
+<head prefix="og:http://ogp.me/ns#">
+
+  {%- capture title -%}{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}{%- endcapture -%}
+
+  {% assign site_name = site.title | escape %}
+  {% assign page_url = page.url | remove: 'index.html' | remove: '.html' | absolute_url %}
+  {% assign page_title = title | escape %}
+  {% assign page_image = page.image | default: site.image | absolute_url %}
+  {% assign page_description = page.description | default: site.description | strip_html | normalize_whitespace | truncate: 200 | escape %}
+
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+
+  <!-- Primary Meta Tags -->
+  <title>{{ page_title }}</title>
+  <meta name="title" content="{{ page_title }}">
+  <meta name="description" content="{{ page_description }}">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page_url }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:image" content="{{ page_image }}">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="{{ page_url }}">
+  <meta property="twitter:title" content="{{ page_title }}">
+  <meta property="twitter:description" content="{{ page_description }}">
+  <meta property="twitter:image" content="{{ page_image }}">
+
+</head>

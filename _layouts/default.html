@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  {% if page.title != nil %}
-  <title>{{ page.title }} - {{ site.title }}</title>
-  {% else %}
-  <title>{{ site.title }}</title>
-  {% endif %}
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
-</head>
+{% include head.html %}
 <body>
 <div class="flex">
   <div class="mx-auto w-full flex">
