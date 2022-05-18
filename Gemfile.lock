@@ -280,6 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 226)
+  jekyll-feed
   jekyll-postcss (~> 0.4.0)
   webrick
 

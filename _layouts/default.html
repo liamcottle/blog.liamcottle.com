@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-  </head>
-  <body class="text-red-500">
-    {{ content }}
-  </body>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  {% if page.title != nil %}
+  <title>{{ page.title }} - {{ site.title }}</title>
+  {% else %}
+  <title>{{ site.title }}</title>
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+<div class="flex">
+  <div class="mx-auto w-full flex">
+    <div class="w-full">
+      {% include nav.html %}
+      <div class="max-w-3xl mx-auto p-6">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>

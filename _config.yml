@@ -1,10 +1,28 @@
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "" # the subpath of your site, e.g. /blog
-title: "" # the name of your site, e.g. ACME Corp.
-
+url: "https://blog.liamcottle.com"
+baseurl: ""
+title: "Liam Cottle's Blog"
+description: "Rambles from a self taught Software Engineer"
 permalink: ":year/:month/:day/:title"
 
+author:
+  name: "Liam Cottle"
+  email: "liam@liamcottle.com"
+
+intro:
+  avatar: "assets/images/avatar.jpg"
+  title: "Hey traveller, welcome to my blog 👋"
+  description: |
+    I write about software engineering, security vulnerabilities and anything else I find interesting.
+    Hopefully you'll find something that interests you too.
+    Feel free to explore my postings!
+
+# social links
+discord_url: "https://discord.gg/APQSQZNV7t"
+github_url: "https://github.com/liamcottle"
+twitter_url: "https://twitter.com/liamcottle"
+
 plugins:
+  - jekyll-feed
   - jekyll-postcss
 
 postcss:
