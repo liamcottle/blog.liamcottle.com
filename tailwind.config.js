@@ -11,6 +11,7 @@ module.exports = {
         extend: {
             colors: {
                 discord: '#5865F2',
+                linkedin: '#0A66C2',
                 github: '#333333',
                 twitter: '#1DA1F2',
             },

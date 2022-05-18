@@ -20,6 +20,8 @@ intro:
 discord_url: "https://discord.gg/APQSQZNV7t"
 github_url: "https://github.com/liamcottle"
 twitter_url: "https://twitter.com/liamcottle"
+contact_url: "https://liamcottle.com/contact"
+linkedin_url: "https://www.linkedin.com/in/liamcottle/"
 
 plugins:
   - jekyll-feed
