@@ -44,5 +44,9 @@
         @apply list-disc ml-4;
     }
 
+    blockquote {
+        @apply border-l-4 border-gray-400 pl-3;
+    }
+
 }
 
