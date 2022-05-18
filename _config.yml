@@ -7,14 +7,13 @@ permalink: ":year/:month/:day/:title"
 author:
   name: "Liam Cottle"
   email: "liam@liamcottle.com"
+  avatar: "assets/images/avatar.jpg"
 
 intro:
-  avatar: "assets/images/avatar.jpg"
-  title: "Hey traveller, welcome to my blog 👋"
+  title: "Hey there 👋"
   description: |
-    I write about software engineering, security vulnerabilities and anything else I find interesting.
-    Hopefully you'll find something that interests you too.
-    Feel free to explore my postings!
+    Welcome to my blog. I write about software, hardware, security vulnerabilities and anything else I find interesting.
+    Hopefully you'll find something that interests you too. Feel free to explore my postings!
 
 # social links
 discord_url: "https://discord.gg/APQSQZNV7t"

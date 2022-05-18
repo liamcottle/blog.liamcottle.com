@@ -1,7 +1,6 @@
 {% if site.intro != nil %}
-<div class="flex mb-6 bg-gray-100 rounded-lg p-3 shadow">
-    <img class="h-12 w-12 rounded-full" src="{{ site.intro.avatar | relative_url }}" alt="Avatar">
-    <div class="ml-3 my-auto">
+<div class="flex mb-6 bg-gray-100 rounded-lg px-4 py-3 shadow">
+    <div class="my-auto">
         <div class="text-lg">{{ site.intro.title }}</div>
         <div class="text-sm text-gray-600">{{ site.intro.description }}</div>
         <div class="mt-2 space-x-1">
