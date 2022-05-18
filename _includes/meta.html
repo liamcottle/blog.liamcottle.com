@@ -6,6 +6,10 @@
     {% assign tags = page.tags %}
 {% endif %}
 
+{% if categories.size > 0 || tags.size > 0 %}
+<div class="border-b my-4"></div>
+{% endif %}
+
 {% if categories.size > 0 %}
 <div class="flex space-x-1 mb-2">
     <span>Posted in:</span>
