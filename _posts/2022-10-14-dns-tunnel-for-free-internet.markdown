@@ -66,7 +66,7 @@ If you registered the domain `mydnstunnel.com`, configure the following DNS reco
 
 > `t1` stands for `Tunnel 1`, and `t1ns` stands for `Tunnel 1 Name Server`. You can use anything, as long as it has the format `{any}.mydnstunnel.com` and `{any}ns.mydnstunnel.com` and both records have the same value as each other for `{any}`.
 
-Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Google's DNS servers to see if your carrier allows access to arbitrary DNS servers.
+Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Cloudflare or Google's DNS servers to see if your carrier allows access to arbitrary DNS servers.
 
 ```shell
 # check that your carriers' DNS server will return your DNS records
