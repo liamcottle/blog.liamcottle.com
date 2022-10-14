@@ -2,7 +2,7 @@
 layout: post
 date: 2022-10-14 22:30:00 +1300
 title: "DNS Tunnel for free internet?"
-description: "How to use Iodine to establish a DNS tunnel."
+description: "How to use a DNS Tunnel to smuggle your internet packets."
 ---
 
 This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a [socks5 proxy][socks5] on a remote server and creating a DNS tunnel between my local device and that remote server.
