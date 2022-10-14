@@ -44,6 +44,10 @@
         @apply list-disc ml-4;
     }
 
+    .post img {
+        @apply rounded-lg mb-4 shadow bg-gray-200;
+    }
+
     blockquote {
         @apply border-l-4 border-gray-400 pl-3;
     }
