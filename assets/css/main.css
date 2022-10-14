@@ -51,6 +51,7 @@
     /* don't allow preformatted content to overflow off screen */
     pre {
         overflow-x: scroll;
+        padding: 8px;
     }
 
 }
