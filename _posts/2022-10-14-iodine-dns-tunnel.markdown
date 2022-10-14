@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2022-10-14 22:00:00 +1300
+date: 2022-10-14 22:30:00 +1300
 title: "DNS Tunnel for free internet?"
 description: "How to use Iodine to establish a DNS tunnel."
 ---
