@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head prefix="og:http://ogp.me/ns#">
+  
+  
+  
+  
+
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- styles -->
+  
+  <link rel="stylesheet" href="/assets/css/main.css?v=1665740558">
+  <link rel="stylesheet" href="/assets/css/syntax.css?v=1665740558">
+
+  <!-- Primary Meta Tags -->
+  <title>DNS Tunnel for free internet? - Liam Cottle&#39;s Blog</title>
+  <meta name="title" content="DNS Tunnel for free internet? - Liam Cottle&#39;s Blog">
+  <meta name="description" content="How to use Iodine to establish a DNS tunnel.">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel">
+  <meta property="og:title" content="DNS Tunnel for free internet? - Liam Cottle&#39;s Blog">
+  <meta property="og:description" content="How to use Iodine to establish a DNS tunnel.">
+  <meta property="og:image" content="https://blog.liamcottle.com/assets/images/avatar.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel">
+  <meta property="twitter:title" content="DNS Tunnel for free internet? - Liam Cottle&#39;s Blog">
+  <meta property="twitter:description" content="How to use Iodine to establish a DNS tunnel.">
+  <meta property="twitter:image" content="https://blog.liamcottle.com/assets/images/avatar.jpg">
+
+</head>
+
+<body>
+<div class="flex">
+  <div class="mx-auto w-full flex">
+    <div class="w-full">
+      <nav class="bg-white shadow">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="relative flex justify-between h-16">
+            <div class="flex-1 flex items-stretch justify-start">
+
+                <a href="https://blog.liamcottle.com" class="flex-shrink-0 flex items-center font-medium">
+                    <img class="rounded-full w-8 h-8 mr-3" src="/assets/images/avatar.jpg">
+                    <div>Liam Cottle's Blog</div>
+                </a>
+
+                <div class="ml-auto flex">
+                    <a href="/feed.xml" class="text-orange-500 hover:text-orange-600 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                        <span class="hidden sm:block ml-2">Atom Feed</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+      <div class="max-w-3xl mx-auto p-6">
+        <h2 class="text-2xl font-bold">DNS Tunnel for free internet?</h2>
+<h3 class="mb-4 font-medium text-gray-500">October 14, 2022</h3>
+
+<div class="post">
+    <p>This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a socks5 proxy on a remote server and creating a DNS tunnel between my local device and that remote server.</p>
+
+<h2 id="what">What?</h2>
+
+<ul>
+  <li>We can use <a href="https://www.inet.no/dante">Dante</a> as a socks5 proxy on a remote server.</li>
+  <li>We can use <a href="https://github.com/yarrick/iodine">Iodine</a> to create a DNS tunnel between our local device and the remote server.</li>
+  <li>We can connect to the remote server’s socks5 proxy via the DNS tunnel to access the internet.</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>I don’t know really… Just for fun?</p>
+
+<p>Who knows, you might be in a scenario where you have a 4G connection, and have no credit or data allowance, and just really want to check out <a href="https://twitter.com/liamcottle">my latest tweets</a>.</p>
+
+<p>If your connection allows you to make DNS queries for arbitrary domain names without needing to have credit on your account, you can use a DNS tunnel to access any other server on the internet.</p>
+
+<p>I want to let you know upfront, before you try this, that <a href="https://github.com/yarrick/iodine#performance">it will be extremely slow</a>. You’re not going to see gigabit network speeds, let alone megabit speeds. You’ll probably only see a few kilobytes per second, at best. Either way, this network connection could be useful in some situations.</p>
+
+<h2 id="how">How?</h2>
+
+<p><a href="https://github.com/yarrick/iodine">Iodine</a> creates a network tunnel by acting as a domain name server.</p>
+
+<p>When your local device sends a DNS request for a domain name, it will be sent to your carriers’ DNS server, which will then look up the name server associated with the domain being queried.</p>
+
+<p>Your carriers’ DNS server will then query that name server and return the result. This is known as a recursive DNS server.</p>
+
+<p>We will configure the name server for our domain to be our Iodine server. This will make the carriers’ DNS server query our remote server when we ask it for DNS records.</p>
+
+<p>By using Iodine as our custom domain name server;</p>
+
+<ul>
+  <li>
+    <p>Your local device can send data to your remote server by encoding network packets in the domain name it requests the DNS records for.</p>
+  </li>
+  <li>
+    <p>The Iodine server can then send data back to your local device by responding to the DNS queries with encoded network packets in the DNS result.</p>
+  </li>
+  <li>
+    <p>A two-way connection is established by sending ping packets from the local device to the remote server every so often. This allows the remote server to send packets to the local device.</p>
+  </li>
+</ul>
+
+<p>Iodine will create a network and assign an IP address to your local device and remote server. Packets sent between these IP addresses will travel through the DNS tunnel.</p>
+
+<p><strong>Requirements</strong></p>
+
+<p>To set this up, you will need a few things;</p>
+
+<ul>
+  <li>A domain name, such as <code class="language-plaintext highlighter-rouge">mydnstunnel.com</code>.</li>
+  <li>An Ubuntu 22.04 server with a public IP address to act as the Iodine and socks5 server.</li>
+  <li>A device that will allow you to query a DNS server for free. You could use one of the following;
+    <ul>
+      <li>A 4G/LTE USB Modem.</li>
+      <li>A mobile phone with a sim card that can act as a WiFi hotspot.</li>
+      <li>I’m using a <a href="https://mikrotik.com/product/ltap_mini_lte_kit">MikroTik LtAp Mini</a> with a sim card as it gives me full control of all routing.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Domain Name</strong></p>
+
+<p>Once you have registered a domain name, you will need to configure a couple of DNS records. These are the subdomain records that Iodine will communicate through.</p>
+
+<p>If you registered the domain <code class="language-plaintext highlighter-rouge">mydnstunnel.com</code>, configure the following DNS records;</p>
+
+<ul>
+  <li>Create an <code class="language-plaintext highlighter-rouge">NS</code> record for <code class="language-plaintext highlighter-rouge">t1.mydnstunnel.com</code> that points to <code class="language-plaintext highlighter-rouge">t1ns.mydnstunnel.com</code>.</li>
+  <li>Create an <code class="language-plaintext highlighter-rouge">A</code> record for <code class="language-plaintext highlighter-rouge">t1ns.mydnstunnel.com</code> that has the Public IP of your remote server.</li>
+</ul>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">t1</code> stands for <code class="language-plaintext highlighter-rouge">Tunnel 1</code>, and <code class="language-plaintext highlighter-rouge">t1ns</code> stands for <code class="language-plaintext highlighter-rouge">Tunnel 1 Name Server</code>. You can use anything, as long as it has the format <code class="language-plaintext highlighter-rouge">{any}.mydnstunnel.com</code> and <code class="language-plaintext highlighter-rouge">{any}ns.mydnstunnel.com</code> and both records have the same value as each other for <code class="language-plaintext highlighter-rouge">{any}</code>.</p>
+</blockquote>
+
+<p>Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Google’s DNS servers to see if your carrier allows access to arbitrary DNS servers.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># check that your carriers' DNS server will return your DNS records</span>
+dig t1ns.mydnstunnel.com
+
+<span class="c"># check if your carrier allows you to access other DNS servers</span>
+dig t1ns.mydnstunnel.com @1.1.1.1
+dig t1ns.mydnstunnel.com @8.8.8.8
+</code></pre></div></div>
+
+<p>If you are able to see the public IP address that you configured for your domain, then Iodine should work for you.</p>
+
+<p>If you can’t see the DNS records for your custom domain, your carrier might block DNS traffic when you don’t have any credit or data allowance. In this case, Iodine will likely not work for you at all. But feel free to continue and see if it does anyway.</p>
+
+<p><strong>Remote Server</strong></p>
+
+<p>We need a remote server to run the Iodine Domain Name Server, and also a socks5 proxy. I’m going to use an Ubuntu 22.04 server with Dante as the socks5 proxy.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># install dante</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> dante-server
+
+<span class="c"># remove default dante config</span>
+<span class="nb">sudo rm</span> /etc/danted.conf
+
+<span class="c"># add dante config</span>
+<span class="nb">sudo </span>nano /etc/danted.conf
+</code></pre></div></div>
+
+<p>Add the below config to <code class="language-plaintext highlighter-rouge">/etc/danted.conf</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>logoutput: syslog
+user.privileged: root
+user.unprivileged: nobody
+socksmethod: none
+clientmethod: none
+
+# This only allows traffic to our DNS tunnel IP.
+internal: 192.168.99.1 port=1080
+
+# This is the interface for outbound proxy traffic.
+external: eth0
+
+client pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+</code></pre></div></div>
+
+<p>Next we need to download and build <a href="https://github.com/yarrick/iodine">Iodine</a> on the remote server.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># install iodine dependencies</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> cmake net-tools pkg-config zlib1g zlib1g-dev
+
+<span class="c"># download iodine</span>
+git clone https://github.com/yarrick/iodine
+
+<span class="c"># build iodine and move to bin</span>
+<span class="nb">cd </span>iodine
+make
+<span class="nb">chmod</span> +x ./bin/iodined
+<span class="nb">sudo cp</span> ./bin/iodined /usr/local/bin
+</code></pre></div></div>
+
+<p>Now that <code class="language-plaintext highlighter-rouge">iodined</code> is installed on the remote server, you can run it with the following command;</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iodined <span class="nt">-f</span> <span class="nt">-DD</span> <span class="nt">-P</span> password <span class="nt">-c</span> 192.168.99.1/24 t1.mydnstunnel.com
+</code></pre></div></div>
+
+<p>This is what the flags do;</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-f</code> will run Iodine in the foreground.</li>
+  <li><code class="language-plaintext highlighter-rouge">-DD</code> will output verbose logging so you can diagnose any issues.</li>
+  <li><code class="language-plaintext highlighter-rouge">-P password</code> sets the password for the DNS tunnel. Use the same password on the client and server.</li>
+  <li><code class="language-plaintext highlighter-rouge">-c</code> will disable checking the IP/port of the client on each request. Only use this if your network is unstable.</li>
+  <li><code class="language-plaintext highlighter-rouge">192.168.99.1/24</code> is the network where the DNS tunnel will run on the remote server. You can change this, but make sure to update the IP in the Dante config aswell.</li>
+  <li><code class="language-plaintext highlighter-rouge">t1.mydnstunnel.com</code> is the domain name you chose, including the tunnel name prefix you added in your DNS records.</li>
+</ul>
+
+<p>You’ll want to run Iodine in the background to keep it running when you disconnect from the remote server, but while testing you can use the <code class="language-plaintext highlighter-rouge">-f</code> flag to run in the foreground. <code class="language-plaintext highlighter-rouge">Ctrl+C</code> will stop the Iodine server.</p>
+
+<blockquote>
+  <p>Note: the server executable is <code class="language-plaintext highlighter-rouge">iodined</code>, and the client executable is <code class="language-plaintext highlighter-rouge">iodine</code> (<em>without</em> the <code class="language-plaintext highlighter-rouge">d</code>).</p>
+</blockquote>
+
+<p><strong>Local Device</strong></p>
+
+<p>The next step is to connect your local device to your carrier network through your 4G/LTE modem (or whatever device you chose to use).</p>
+
+<p>Then download and build Iodine for your local device. I am using macOS, and didn’t need to install any dependencies, but your setup might be different.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># download iodine</span>
+git clone https://github.com/yarrick/iodine
+
+<span class="c"># build iodine</span>
+<span class="nb">cd </span>iodine
+make
+</code></pre></div></div>
+
+<p>Now that you have Iodine on your local device, try to establish a DNS tunnel to the remote server.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> ./bin/iodine <span class="nt">-f</span> <span class="nt">-P</span> password t1.mydnstunnel.com
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-f</code> will run Iodine in the foreground.</li>
+  <li><code class="language-plaintext highlighter-rouge">-P password</code> sets the password for the DNS tunnel. Use the same password on the client and server.</li>
+  <li><code class="language-plaintext highlighter-rouge">t1.mydnstunnel.com</code> is the domain name you chose, including the tunnel name prefix you added in your DNS records.</li>
+</ul>
+
+<p>If all goes well, you should now have a DNS tunnel running. Try pinging the remote server through the tunnel.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping 192.168.99.1
+</code></pre></div></div>
+
+<p>Then, try pinging your local device from the remote server.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping 192.168.99.2
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: Your local and remote device IPs might be different. Check the output after running Iodine for the correct IP addresses.</p>
+</blockquote>
+
+<h2 id="now-what">Now what?</h2>
+
+<p>Now you have a DNS tunnel established to your remote server. You could use curl to make http requests through the socks5 proxy via the command line, or you could configure your local device to use the socks5 server as a global proxy so all traffic goes through it.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-x</span> <span class="s2">"socks5h://192.168.99.1"</span> http://canhazip.com
+</code></pre></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>If you’re having trouble pinging the remote server from the local device when the connection is established, make sure any intermediate DNS servers aren’t caching the query results.</p>
+
+<p>For example, in my setup I have MikroTik RouterOS as the main DNS server. You should configure this to have a low TTL for DNS caching, or change your local device DNS servers to your carrier DNS servers to remove the extra DNS server.</p>
+
+<p>The maintainers of the Iodine server also have a <a href="https://code.kryo.se/iodine/check-it">handy tool</a> to check that your Iodine server is configured correctly.</p>
+
+<h2 id="handy-snippets">Handy Snippets</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SSH into the Remote Server via DNS Tunnel</span>
+ssh root@192.168.99.1
+
+<span class="c"># SSH into any server via the socks5 proxy through the DNS tunnel</span>
+ssh <span class="nt">-o</span> <span class="nv">ProxyCommand</span><span class="o">=</span><span class="s1">'nc -x 192.168.99.1 %h %p'</span> user@server
+</code></pre></div></div>
+
+<h2 id="future-research">Future Research</h2>
+
+<ul>
+  <li>Maybe investigate running <a href="https://www.wireguard.com/">wireguard</a> on the remote server instead of using a socks5 proxy.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://github.com/yarrick/iodine">https://github.com/yarrick/iodine</a></li>
+  <li><a href="https://code.kryo.se/iodine/check-it">https://code.kryo.se/iodine/check-it/</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-dante-proxy-on-ubuntu-20-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-dante-proxy-on-ubuntu-20-04</a></li>
+</ul>
+
+
+</div>
+
+
+
+<div class="border-b my-4"></div>
+
+
+
+
+<div class="flex space-x-1 mb-2">
+
+    <!-- share to twitter -->
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=DNS Tunnel for free internet? https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel" class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-twitter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-twitter">
+        <svg role="img" class="w-4 h-4 mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+        </svg>
+        <span>Tweet</span>
+    </a>
+
+    <!-- share to facebook -->
+    <a target="_blank" href="https://www.facebook.com/sharer.php?title=DNS Tunnel for free internet?&u=https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel" class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-facebook focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-facebook">
+        <svg role="img" class="w-4 h-4 mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Share</span>
+    </a>
+
+    <!-- share to reddit -->
+    <a target="_blank" href="https://reddit.com/submit?title=DNS Tunnel for free internet?&url=https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel" class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-reddit focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-reddit">
+        <svg role="img" class="w-4 h-4 mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+        </svg>
+        <span>Share</span>
+    </a>
+
+</div>
+
+
+
+
+
+
+
+      </div>
+      <div class="bg-white border-t">
+    <div class="max-w-3xl flex mx-auto px-6 py-6">
+        <div class="mx-auto">
+
+            
+            <a href="https://twitter.com/liamcottle" class="inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-twitter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-twitter">
+                <svg role="img" class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+            </a>
+            
+
+            
+            <a href="https://github.com/liamcottle" class="inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-github focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-github">
+                <svg role="img" class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                </svg>
+            </a>
+            
+
+            
+            <a href="https://discord.gg/APQSQZNV7t" class="inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-discord focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-discord">
+                <svg role="img" class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                </svg>
+            </a>
+            
+
+            
+            <a href="https://www.linkedin.com/in/liamcottle/" class="inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-linkedin focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-linkedin">
+                <svg role="img" class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            
+
+
+            
+            <a href="https://liamcottle.com/contact" class="inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+            </a>
+            
+
+        </div>
+    </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S3724X6D5M"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S3724X6D5M');
+</script>
+
+</body>
+</html>

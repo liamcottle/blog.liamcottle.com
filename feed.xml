@@ -1,4 +1,246 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2022-05-18T13:26:43+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">The start of a new blog</title><link href="https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog" rel="alternate" type="text/html" title="The start of a new blog" /><published>2022-05-18T11:30:00+00:00</published><updated>2022-05-18T11:30:00+00:00</updated><id>https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog</id><content type="html" xml:base="https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog">&lt;p&gt;I’ve always wanted to start a blog, but have never actually made the effort to put one together. So here we are, the first post on a fresh new blog!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2022-10-14T09:42:38+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">DNS Tunnel for free internet?</title><link href="https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel" rel="alternate" type="text/html" title="DNS Tunnel for free internet?" /><published>2022-10-14T09:30:00+00:00</published><updated>2022-10-14T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel</id><content type="html" xml:base="https://blog.liamcottle.com/2022/10/14/iodine-dns-tunnel">&lt;p&gt;This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a socks5 proxy on a remote server and creating a DNS tunnel between my local device and that remote server.&lt;/p&gt;
+
+&lt;h2 id=&quot;what&quot;&gt;What?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We can use &lt;a href=&quot;https://www.inet.no/dante&quot;&gt;Dante&lt;/a&gt; as a socks5 proxy on a remote server.&lt;/li&gt;
+  &lt;li&gt;We can use &lt;a href=&quot;https://github.com/yarrick/iodine&quot;&gt;Iodine&lt;/a&gt; to create a DNS tunnel between our local device and the remote server.&lt;/li&gt;
+  &lt;li&gt;We can connect to the remote server’s socks5 proxy via the DNS tunnel to access the internet.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why&quot;&gt;Why?&lt;/h2&gt;
+
+&lt;p&gt;I don’t know really… Just for fun?&lt;/p&gt;
+
+&lt;p&gt;Who knows, you might be in a scenario where you have a 4G connection, and have no credit or data allowance, and just really want to check out &lt;a href=&quot;https://twitter.com/liamcottle&quot;&gt;my latest tweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If your connection allows you to make DNS queries for arbitrary domain names without needing to have credit on your account, you can use a DNS tunnel to access any other server on the internet.&lt;/p&gt;
+
+&lt;p&gt;I want to let you know upfront, before you try this, that &lt;a href=&quot;https://github.com/yarrick/iodine#performance&quot;&gt;it will be extremely slow&lt;/a&gt;. You’re not going to see gigabit network speeds, let alone megabit speeds. You’ll probably only see a few kilobytes per second, at best. Either way, this network connection could be useful in some situations.&lt;/p&gt;
+
+&lt;h2 id=&quot;how&quot;&gt;How?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/yarrick/iodine&quot;&gt;Iodine&lt;/a&gt; creates a network tunnel by acting as a domain name server.&lt;/p&gt;
+
+&lt;p&gt;When your local device sends a DNS request for a domain name, it will be sent to your carriers’ DNS server, which will then look up the name server associated with the domain being queried.&lt;/p&gt;
+
+&lt;p&gt;Your carriers’ DNS server will then query that name server and return the result. This is known as a recursive DNS server.&lt;/p&gt;
+
+&lt;p&gt;We will configure the name server for our domain to be our Iodine server. This will make the carriers’ DNS server query our remote server when we ask it for DNS records.&lt;/p&gt;
+
+&lt;p&gt;By using Iodine as our custom domain name server;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Your local device can send data to your remote server by encoding network packets in the domain name it requests the DNS records for.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Iodine server can then send data back to your local device by responding to the DNS queries with encoded network packets in the DNS result.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A two-way connection is established by sending ping packets from the local device to the remote server every so often. This allows the remote server to send packets to the local device.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Iodine will create a network and assign an IP address to your local device and remote server. Packets sent between these IP addresses will travel through the DNS tunnel.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To set this up, you will need a few things;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A domain name, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mydnstunnel.com&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;An Ubuntu 22.04 server with a public IP address to act as the Iodine and socks5 server.&lt;/li&gt;
+  &lt;li&gt;A device that will allow you to query a DNS server for free. You could use one of the following;
+    &lt;ul&gt;
+      &lt;li&gt;A 4G/LTE USB Modem.&lt;/li&gt;
+      &lt;li&gt;A mobile phone with a sim card that can act as a WiFi hotspot.&lt;/li&gt;
+      &lt;li&gt;I’m using a &lt;a href=&quot;https://mikrotik.com/product/ltap_mini_lte_kit&quot;&gt;MikroTik LtAp Mini&lt;/a&gt; with a sim card as it gives me full control of all routing.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Domain Name&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have registered a domain name, you will need to configure a couple of DNS records. These are the subdomain records that Iodine will communicate through.&lt;/p&gt;
+
+&lt;p&gt;If you registered the domain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mydnstunnel.com&lt;/code&gt;, configure the following DNS records;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NS&lt;/code&gt; record for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1.mydnstunnel.com&lt;/code&gt; that points to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1ns.mydnstunnel.com&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A&lt;/code&gt; record for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1ns.mydnstunnel.com&lt;/code&gt; that has the Public IP of your remote server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1&lt;/code&gt; stands for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tunnel 1&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1ns&lt;/code&gt; stands for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tunnel 1 Name Server&lt;/code&gt;. You can use anything, as long as it has the format &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{any}.mydnstunnel.com&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{any}ns.mydnstunnel.com&lt;/code&gt; and both records have the same value as each other for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{any}&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Google’s DNS servers to see if your carrier allows access to arbitrary DNS servers.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# check that your carriers' DNS server will return your DNS records&lt;/span&gt;
+dig t1ns.mydnstunnel.com
+
+&lt;span class=&quot;c&quot;&gt;# check if your carrier allows you to access other DNS servers&lt;/span&gt;
+dig t1ns.mydnstunnel.com @1.1.1.1
+dig t1ns.mydnstunnel.com @8.8.8.8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are able to see the public IP address that you configured for your domain, then Iodine should work for you.&lt;/p&gt;
+
+&lt;p&gt;If you can’t see the DNS records for your custom domain, your carrier might block DNS traffic when you don’t have any credit or data allowance. In this case, Iodine will likely not work for you at all. But feel free to continue and see if it does anyway.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Remote Server&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We need a remote server to run the Iodine Domain Name Server, and also a socks5 proxy. I’m going to use an Ubuntu 22.04 server with Dante as the socks5 proxy.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# install dante&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; dante-server
+
+&lt;span class=&quot;c&quot;&gt;# remove default dante config&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo rm&lt;/span&gt; /etc/danted.conf
+
+&lt;span class=&quot;c&quot;&gt;# add dante config&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/danted.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the below config to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/danted.conf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;logoutput: syslog
+user.privileged: root
+user.unprivileged: nobody
+socksmethod: none
+clientmethod: none
+
+# This only allows traffic to our DNS tunnel IP.
+internal: 192.168.99.1 port=1080
+
+# This is the interface for outbound proxy traffic.
+external: eth0
+
+client pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next we need to download and build &lt;a href=&quot;https://github.com/yarrick/iodine&quot;&gt;Iodine&lt;/a&gt; on the remote server.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# install iodine dependencies&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; cmake net-tools pkg-config zlib1g zlib1g-dev
+
+&lt;span class=&quot;c&quot;&gt;# download iodine&lt;/span&gt;
+git clone https://github.com/yarrick/iodine
+
+&lt;span class=&quot;c&quot;&gt;# build iodine and move to bin&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;iodine
+make
+&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x ./bin/iodined
+&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; ./bin/iodined /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iodined&lt;/code&gt; is installed on the remote server, you can run it with the following command;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iodined &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-DD&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; password &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 192.168.99.1/24 t1.mydnstunnel.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is what the flags do;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-f&lt;/code&gt; will run Iodine in the foreground.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-DD&lt;/code&gt; will output verbose logging so you can diagnose any issues.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-P password&lt;/code&gt; sets the password for the DNS tunnel. Use the same password on the client and server.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-c&lt;/code&gt; will disable checking the IP/port of the client on each request. Only use this if your network is unstable.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.99.1/24&lt;/code&gt; is the network where the DNS tunnel will run on the remote server. You can change this, but make sure to update the IP in the Dante config aswell.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1.mydnstunnel.com&lt;/code&gt; is the domain name you chose, including the tunnel name prefix you added in your DNS records.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll want to run Iodine in the background to keep it running when you disconnect from the remote server, but while testing you can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-f&lt;/code&gt; flag to run in the foreground. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+C&lt;/code&gt; will stop the Iodine server.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: the server executable is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iodined&lt;/code&gt;, and the client executable is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iodine&lt;/code&gt; (&lt;em&gt;without&lt;/em&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Local Device&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The next step is to connect your local device to your carrier network through your 4G/LTE modem (or whatever device you chose to use).&lt;/p&gt;
+
+&lt;p&gt;Then download and build Iodine for your local device. I am using macOS, and didn’t need to install any dependencies, but your setup might be different.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# download iodine&lt;/span&gt;
+git clone https://github.com/yarrick/iodine
+
+&lt;span class=&quot;c&quot;&gt;# build iodine&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;iodine
+make
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that you have Iodine on your local device, try to establish a DNS tunnel to the remote server.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; ./bin/iodine &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; password t1.mydnstunnel.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-f&lt;/code&gt; will run Iodine in the foreground.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-P password&lt;/code&gt; sets the password for the DNS tunnel. Use the same password on the client and server.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t1.mydnstunnel.com&lt;/code&gt; is the domain name you chose, including the tunnel name prefix you added in your DNS records.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If all goes well, you should now have a DNS tunnel running. Try pinging the remote server through the tunnel.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ping 192.168.99.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, try pinging your local device from the remote server.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ping 192.168.99.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Your local and remote device IPs might be different. Check the output after running Iodine for the correct IP addresses.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;now-what&quot;&gt;Now what?&lt;/h2&gt;
+
+&lt;p&gt;Now you have a DNS tunnel established to your remote server. You could use curl to make http requests through the socks5 proxy via the command line, or you could configure your local device to use the socks5 server as a global proxy so all traffic goes through it.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;socks5h://192.168.99.1&quot;&lt;/span&gt; http://canhazip.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;If you’re having trouble pinging the remote server from the local device when the connection is established, make sure any intermediate DNS servers aren’t caching the query results.&lt;/p&gt;
+
+&lt;p&gt;For example, in my setup I have MikroTik RouterOS as the main DNS server. You should configure this to have a low TTL for DNS caching, or change your local device DNS servers to your carrier DNS servers to remove the extra DNS server.&lt;/p&gt;
+
+&lt;p&gt;The maintainers of the Iodine server also have a &lt;a href=&quot;https://code.kryo.se/iodine/check-it&quot;&gt;handy tool&lt;/a&gt; to check that your Iodine server is configured correctly.&lt;/p&gt;
+
+&lt;h2 id=&quot;handy-snippets&quot;&gt;Handy Snippets&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# SSH into the Remote Server via DNS Tunnel&lt;/span&gt;
+ssh root@192.168.99.1
+
+&lt;span class=&quot;c&quot;&gt;# SSH into any server via the socks5 proxy through the DNS tunnel&lt;/span&gt;
+ssh &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ProxyCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'nc -x 192.168.99.1 %h %p'&lt;/span&gt; user@server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;future-research&quot;&gt;Future Research&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Maybe investigate running &lt;a href=&quot;https://www.wireguard.com/&quot;&gt;wireguard&lt;/a&gt; on the remote server instead of using a socks5 proxy.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yarrick/iodine&quot;&gt;https://github.com/yarrick/iodine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://code.kryo.se/iodine/check-it&quot;&gt;https://code.kryo.se/iodine/check-it/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-set-up-dante-proxy-on-ubuntu-20-04&quot;&gt;https://www.digitalocean.com/community/tutorials/how-to-set-up-dante-proxy-on-ubuntu-20-04&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Liam Cottle</name></author><summary type="html">This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a socks5 proxy on a remote server and creating a DNS tunnel between my local device and that remote server.</summary></entry><entry><title type="html">The start of a new blog</title><link href="https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog" rel="alternate" type="text/html" title="The start of a new blog" /><published>2022-05-18T11:30:00+00:00</published><updated>2022-05-18T11:30:00+00:00</updated><id>https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog</id><content type="html" xml:base="https://blog.liamcottle.com/2022/05/18/the-start-of-a-new-blog">&lt;p&gt;I’ve always wanted to start a blog, but have never actually made the effort to put one together. So here we are, the first post on a fresh new blog!&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;What can you expect from this blog?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
