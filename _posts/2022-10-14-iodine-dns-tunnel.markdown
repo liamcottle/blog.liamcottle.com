@@ -5,7 +5,7 @@ title: "DNS Tunnel for free internet?"
 description: "How to use Iodine to establish a DNS tunnel."
 ---
 
-This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a socks5 proxy on a remote server and creating a DNS tunnel between my local device and that remote server.
+This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a [socks5 proxy][socks5] on a remote server and creating a DNS tunnel between my local device and that remote server.
 
 ## What?
 
@@ -237,4 +237,5 @@ ssh -o ProxyCommand='nc -x 192.168.99.1 %h %p' user@server
 [iodine-performance]: https://github.com/yarrick/iodine#performance
 [mikrotik-ltap-mini]: https://mikrotik.com/product/ltap_mini_lte_kit
 [my-latest-tweets]: https://twitter.com/liamcottle
+[socks5]: https://en.wikipedia.org/wiki/SOCKS
 [wireguard]: https://www.wireguard.com/
