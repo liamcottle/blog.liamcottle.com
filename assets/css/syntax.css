@@ -209,5 +209,6 @@
   color: #bbbbbb;
 }
 .highlight {
-  background-color: #f8f8f8;
+  background-color: rgb(243 244 246);
+  border-radius: 8px;
 }
