@@ -28,7 +28,7 @@
 
     /* all links in a post */
     .post a {
-        @apply underline underline-offset-4 font-semibold text-gray-700 decoration-gray-300 hover:decoration-gray-500;
+        @apply underline underline-offset-4 font-semibold text-gray-700 break-all decoration-gray-300 hover:decoration-gray-500;
     }
 
     /* all code blocks that are not inside a parent with .highlighter-rouge class as they are already highlighted by rouge */
