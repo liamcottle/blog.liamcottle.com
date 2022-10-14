@@ -48,7 +48,7 @@
         @apply border-l-4 border-gray-400 pl-3;
     }
 
-    /* don't allow preformatted content to overflow off screen */
+    /* dont allow preformatted content to overflow off screen */
     pre {
         @apply overflow-x-scroll p-3;
     }
