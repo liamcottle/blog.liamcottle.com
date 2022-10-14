@@ -12,8 +12,8 @@
 
   <!-- styles -->
   
-  <link rel="stylesheet" href="/assets/css/main.css?v=1665746959">
-  <link rel="stylesheet" href="/assets/css/syntax.css?v=1665746959">
+  <link rel="stylesheet" href="/assets/css/main.css?v=1665747747">
+  <link rel="stylesheet" href="/assets/css/syntax.css?v=1665747747">
 
   <!-- Primary Meta Tags -->
   <title>DNS Tunnel for free internet? - Liam Cottle&#39;s Blog</title>
@@ -151,7 +151,7 @@
   <p><code class="language-plaintext highlighter-rouge">t1</code> stands for <code class="language-plaintext highlighter-rouge">Tunnel 1</code>, and <code class="language-plaintext highlighter-rouge">t1ns</code> stands for <code class="language-plaintext highlighter-rouge">Tunnel 1 Name Server</code>. You can use anything, as long as it has the format <code class="language-plaintext highlighter-rouge">{any}.mydnstunnel.com</code> and <code class="language-plaintext highlighter-rouge">{any}ns.mydnstunnel.com</code> and both records have the same value as each other for <code class="language-plaintext highlighter-rouge">{any}</code>.</p>
 </blockquote>
 
-<p>Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Google’s DNS servers to see if your carrier allows access to arbitrary DNS servers.</p>
+<p>Before proceeding further, you should check that your 4G/LTE connection is able to fetch the DNS records you just configured. Try with your carrier DNS server, probably used by default, otherwise try through Cloudflare or Google’s DNS servers to see if your carrier allows access to arbitrary DNS servers.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># check that your carriers' DNS server will return your DNS records</span>
 dig t1ns.mydnstunnel.com
