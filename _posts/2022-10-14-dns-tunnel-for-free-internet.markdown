@@ -124,6 +124,12 @@ socks pass {
 }
 ```
 
+After saving the dante config, restart the service.
+
+```shell
+sudo systemctl restart danted
+```
+
 Next we need to download and build [Iodine][iodine] on the remote server.
 
 ```shell
