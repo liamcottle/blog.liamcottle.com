@@ -76,6 +76,8 @@ dig t1ns.mydnstunnel.com
 # check if your carrier allows you to access other DNS servers
 dig t1ns.mydnstunnel.com @1.1.1.1
 dig t1ns.mydnstunnel.com @8.8.8.8
+dig t1ns.mydnstunnel.com @208.67.220.220
+dig t1ns.mydnstunnel.com @208.67.222.222
 ```
 
 If you are able to see the public IP address that you configured for your domain, then Iodine should work for you.
