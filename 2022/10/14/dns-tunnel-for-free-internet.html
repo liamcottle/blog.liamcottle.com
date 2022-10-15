@@ -12,8 +12,8 @@
 
   <!-- styles -->
   
-  <link rel="stylesheet" href="/assets/css/main.css?v=1665788461">
-  <link rel="stylesheet" href="/assets/css/syntax.css?v=1665788461">
+  <link rel="stylesheet" href="/assets/css/main.css?v=1665796412">
+  <link rel="stylesheet" href="/assets/css/syntax.css?v=1665796412">
 
   <!-- Primary Meta Tags -->
   <title>DNS Tunnel for free internet? - Liam Cottle&#39;s Blog</title>
@@ -180,6 +180,8 @@ dig t1ns.mydnstunnel.com
 <span class="c"># check if your carrier allows you to access other DNS servers</span>
 dig t1ns.mydnstunnel.com @1.1.1.1
 dig t1ns.mydnstunnel.com @8.8.8.8
+dig t1ns.mydnstunnel.com @208.67.220.220
+dig t1ns.mydnstunnel.com @208.67.222.222
 </code></pre></div></div>
 
 <p>If you are able to see the public IP address that you configured for your domain, then Iodine should work for you.</p>
@@ -222,6 +224,11 @@ client pass {
 socks pass {
     from: 0.0.0.0/0 to: 0.0.0.0/0
 }
+</code></pre></div></div>
+
+<p>After saving the dante config, restart the service.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart danted
 </code></pre></div></div>
 
 <p>Next we need to download and build <a href="https://github.com/yarrick/iodine">Iodine</a> on the remote server.</p>

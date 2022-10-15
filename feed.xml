@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2022-10-14T23:01:01+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">DNS Tunnel for free internet?</title><link href="https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet" rel="alternate" type="text/html" title="DNS Tunnel for free internet?" /><published>2022-10-14T09:30:00+00:00</published><updated>2022-10-14T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet</id><content type="html" xml:base="https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet">&lt;p&gt;&lt;img src=&quot;/assets/images/2022/10/14/dns-tunnel.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2022-10-15T01:13:32+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">DNS Tunnel for free internet?</title><link href="https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet" rel="alternate" type="text/html" title="DNS Tunnel for free internet?" /><published>2022-10-14T09:30:00+00:00</published><updated>2022-10-14T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet</id><content type="html" xml:base="https://blog.liamcottle.com/2022/10/14/dns-tunnel-for-free-internet">&lt;p&gt;&lt;img src=&quot;/assets/images/2022/10/14/dns-tunnel.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This blog post explains how I connected to the internet through a 4G/LTE sim card that has no credit or data allowance by setting up a &lt;a href=&quot;https://en.wikipedia.org/wiki/SOCKS&quot;&gt;socks5 proxy&lt;/a&gt; on a remote server and creating a DNS tunnel between my local device and that remote server.&lt;/p&gt;
 
@@ -85,6 +85,8 @@ dig t1ns.mydnstunnel.com
 &lt;span class=&quot;c&quot;&gt;# check if your carrier allows you to access other DNS servers&lt;/span&gt;
 dig t1ns.mydnstunnel.com @1.1.1.1
 dig t1ns.mydnstunnel.com @8.8.8.8
+dig t1ns.mydnstunnel.com @208.67.220.220
+dig t1ns.mydnstunnel.com @208.67.222.222
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If you are able to see the public IP address that you configured for your domain, then Iodine should work for you.&lt;/p&gt;
@@ -127,6 +129,11 @@ client pass {
 socks pass {
     from: 0.0.0.0/0 to: 0.0.0.0/0
 }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After saving the dante config, restart the service.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart danted
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Next we need to download and build &lt;a href=&quot;https://github.com/yarrick/iodine&quot;&gt;Iodine&lt;/a&gt; on the remote server.&lt;/p&gt;
