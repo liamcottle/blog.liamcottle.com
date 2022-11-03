@@ -8,3 +8,14 @@
     gtag('config', '{{ site.google_analytics_measurement_id }}');
 </script>
 {% endif %}
+
+<!-- tooltips -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script type="text/javascript">
+    tippy('[data-toggle="tooltip"]', {
+        content(element) {
+            return element.getAttribute('title');
+        },
+    });
+</script>
