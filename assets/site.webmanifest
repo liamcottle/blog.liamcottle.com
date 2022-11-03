@@ -1,7 +1,7 @@
 {
-  "name": "{{ site.title }}",
-  "short_name": "{{ site.title }}",
-  "description": "{{ site.description }}",
+  "name": "Liam Cottle's Blog",
+  "short_name": "Liam Cottle's Blog",
+  "description": "Rambles from a self taught Software Engineer",
   "scope": "/",
   "start_url": "/?utm_source=homescreen&utm_medium=shortcut",
   "icons": [
