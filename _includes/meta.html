@@ -6,33 +6,37 @@
     {% assign tags = page.tags %}
 {% endif %}
 
-<div class="border-b border-gray-200 dark:border-gray-600 my-4"></div>
+<div class="print:hidden">
 
-{% include share.html %}
+    <div class="border-b border-gray-200 dark:border-gray-600 my-4"></div>
 
-{% if categories.size > 0 %}
-<div class="flex space-x-1 mb-2">
-    <span>Posted in:</span>
-    {% for category in categories %}
-    <a href="{{site.baseurl}}/categories/#{{category|slugize}}" class="underline underline-offset-2 text-gray-700 decoration-gray-300 hover:decoration-gray-500">{{category}}</a>
-    {% unless forloop.last %}
-    <span>,</span>
-    {% endunless %}
-    {% endfor %}
-</div>
-{% endif %}
+    {% include share.html %}
 
-{% if tags.size > 0 %}
-<div class="flex flex-wrap">
-    {% for tag in tags %}
-    <div class="mb-2 mr-1">
-        <a href="{{site.baseurl}}/tags/#{{tag|slugize}}" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="-ml-0.5 mr-1.5 h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-            </svg>
-            {{tag}}
-        </a>
+    {% if categories.size > 0 %}
+    <div class="flex space-x-1 mb-2">
+        <span>Posted in:</span>
+        {% for category in categories %}
+        <a href="{{site.baseurl}}/categories/#{{category|slugize}}" class="underline underline-offset-2 text-gray-700 decoration-gray-300 hover:decoration-gray-500">{{category}}</a>
+        {% unless forloop.last %}
+        <span>,</span>
+        {% endunless %}
+        {% endfor %}
     </div>
-    {% endfor %}
+    {% endif %}
+
+    {% if tags.size > 0 %}
+    <div class="flex flex-wrap">
+        {% for tag in tags %}
+        <div class="mb-2 mr-1">
+            <a href="{{site.baseurl}}/tags/#{{tag|slugize}}" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-0.5 mr-1.5 h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                </svg>
+                {{tag}}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
 </div>
-{% endif %}

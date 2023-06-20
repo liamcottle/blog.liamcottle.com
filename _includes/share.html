@@ -1,7 +1,7 @@
 {% assign page_url = page.url | remove: 'index.html' | remove: '.html' | absolute_url | escape %}
 {% assign page_title = page.title | escape %}
 
-<div class="flex space-x-1 mb-2">
+<div class="flex space-x-1 mb-2 print:hidden">
 
     <!-- share to twitter -->
     <a target="_blank" href="https://twitter.com/intent/tweet?text={{ page_title }} {{ page_url }}" class="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-twitter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-twitter">
