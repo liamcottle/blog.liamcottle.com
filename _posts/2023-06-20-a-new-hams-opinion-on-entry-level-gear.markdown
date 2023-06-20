@@ -23,6 +23,21 @@ With all of that said, my first 50 contacts were all made possible by cheap, ent
 
 73, Liam [ZL2DEV][zl2dev]
 
+## Equipment
+
+- **Portable**
+  - [Baofeng UV5R - 5 Watt Handheld][uv5r]
+  - [Baofeng UV82 - 8 Watt Handheld][uv82]
+  - [Nagoya NA-771 Whip Antenna][na771]
+
+- **Base Station**
+  - [TYT TH-9800 - 50 Watt Base Station][th9800]
+  - [VHF/UHF Base Station Antenna][tm770b]
+
+## Software
+
+- [CHIRP][chirp]
+
 [image]: /assets/images/2023/06/20/IMG_2501.jpg
 [zl2dev]: https://qrz.com/db/zl2dev
 [zl1dks]: https://qrz.com/db/zl1dks
