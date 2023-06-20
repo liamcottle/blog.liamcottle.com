@@ -31,3 +31,13 @@ plugins:
 
 postcss:
   cache: false
+
+exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - README.md
+  - tailwind.config.js
