@@ -24,8 +24,8 @@ With all of that said, my first 50 contacts were all made possible by cheap, ent
 73, Liam [ZL2DEV][zl2dev]
 
 [image]: /assets/images/2023/06/20/IMG_2501.jpg
-[zl2dev]: https://www.inet.no/dante
-[zl1dks]: https://github.com/yarrick/iodine
+[zl2dev]: https://qrz.com/db/zl2dev
+[zl1dks]: https://qrz.com/db/zl1dks
 [uv5r]: https://techoman.co.nz/collections/amateur-mobile-radios/products/baofeng-uv-5r-5w-ham-walkie-talkie-dual-vhf-uhf
 [uv82]: https://techoman.co.nz/collections/amateur-mobile-radios/products/baofeng-uv-82-8-watt-ham-walkie-talkie-dual-vhf-uhf
 [na771]: https://techoman.co.nz/products/techoman-na-771-antenna-black-sma-f-dual-band-144-430mhz-flexi-antenna
