@@ -33,6 +33,7 @@ postcss:
   cache: false
 
 exclude:
+  - vendor
   - CNAME
   - Gemfile
   - Gemfile.lock
