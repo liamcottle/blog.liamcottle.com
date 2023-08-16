@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2023-06-20 13:30:00 +1300
-title: "A new ham's opinion on entry level gear."
+title: "A new ham's opinion on entry level gear"
 description: "Just a few thoughts from my experiences getting started in amateur radio."
 image: "assets/images/2023/06/20/IMG_2501.jpg"
 ---
