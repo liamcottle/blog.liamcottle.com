@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2023-08-16T10:13:32+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">My first QSO via the ISS</title><link href="https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss" rel="alternate" type="text/html" title="My first QSO via the ISS" /><published>2023-08-16T10:00:00+00:00</published><updated>2023-08-16T10:00:00+00:00</updated><id>https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss</id><content type="html" xml:base="https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss">&lt;p&gt;&lt;a href=&quot;https://images.nasa.gov/details-s132e012208&quot;&gt;&lt;img src=&quot;/assets/images/2023/08/16/s132e012208~large.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2023-11-30T10:00:33+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">Adopting old UniFi Video cameras into UniFi Protect</title><link href="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect" rel="alternate" type="text/html" title="Adopting old UniFi Video cameras into UniFi Protect" /><published>2023-11-30T09:30:00+00:00</published><updated>2023-11-30T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect</id><content type="html" xml:base="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect">&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/unifi_video_upgrade_to_protect.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A few days ago, I was contacted by a friend who had just purchased 4 brand new &lt;a href=&quot;https://store.ui.com/us/en/products/uvc-g3-flex&quot;&gt;UniFi G3 Flex&lt;/a&gt; cameras from a &lt;a href=&quot;https://www.pbtech.co.nz/product/CCTUBI80313/Ubiquiti-UniFi-Protect-UVC-G3-FLEX-1080p-IndoorOut&quot;&gt;New Zealand based supplier&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;He told me he couldn’t get any of them to show up in UniFi Protect, despite them powering up and showing a solid white LED indicating they were ready to adopt.&lt;/p&gt;
+
+&lt;p&gt;This was puzzling as he already had several other G3 Flex cameras, purchased a week before, connected to the same CloudKey Gen2+ all running without any issues.&lt;/p&gt;
+
+&lt;p&gt;I had a similar issue in the past with a few G3 Bullet cameras I picked up second hand, which were on older UniFi Video firmware, and UniFi Protect refused to see them as well…&lt;/p&gt;
+
+&lt;p&gt;After scanning his network with &lt;a href=&quot;https://angryip.org/&quot;&gt;Angry IP Scanner&lt;/a&gt;, (I couldn’t access his WiFi router to check the DHCP reservations), I found the IP addresses for the cameras, and logged in with the default credentials.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Username: ubnt
+Password: ubnt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The login page was a dead give away that these cameras were in fact running older firmware as they showed the UniFi Video logo instead of the UniFi Protect logo. Let’s look at the system information to see the specific version it was running. Wow, v4.2.59! As of this post, the latest firmware is v4.64.150&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/uvc_g3_flex_firmware_v4.2.59.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay, so I determined these cameras needed to be updated to the latest firmware. I went over to the &lt;a href=&quot;https://www.ui.com/download/software/uvc-g3-flex&quot;&gt;Software Downloads&lt;/a&gt; page for the UVC-G3-Flex on the Ubiquiti website, and saw the latest firmware listed was v4.30.0 released on 25th September 2020. That’s over 3 years ago!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/uvc_g3_flex_firmware_download.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I downloaded the firmware anyway, with the hopes it would resolve the issue, and flashed it via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System&lt;/code&gt; &amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Firmware&lt;/code&gt; section of the camera web interface. Flashing was successful, and the camera was now running UniFi Protect firmware. I could tell as the logo was now updated and the system information showed the new firmware version.&lt;/p&gt;
+
+&lt;p&gt;Then I waited for the camera to show up for adoption in UniFi Protect… and then I waited some more… and then I factory reset it a few times, but still, nothing…&lt;/p&gt;
+
+&lt;p&gt;According to a few posts in the forums (linked at the bottom), this old v4.30.0 UniFi Protect firmware was also too old to be detected by the latest version of UniFi Protect v2.8.35 (UniFi OS v3.1.14)…&lt;/p&gt;
+
+&lt;p&gt;So I followed a suggestion from one of the forum users, which was to pull the firmware from the CloudKey Gen2+ as it has the latest firmware it flashed to the other cameras cached in the downloads folder.&lt;/p&gt;
+
+&lt;p&gt;I pulled the latest firmware from the CloudKey to my Mac using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; command, and then uploaded and flashed this firmware to the G3 Flex cameras via their web interface.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp root@cloudkey-ip:/srv/unifi-protect/downloads/aef8-s2l-4.64.150-44b9a1b475574adbb5c3f47b4ebf743e.bin .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Flashing success, the cameras were now running UniFi Protect v4.64.150! Again, I factory reset the units and they still did not show up in UniFi Protect…&lt;/p&gt;
+
+&lt;p&gt;The last thing to try, other than to send them back to the supplier for an exchange, was to manually input the IP address of the CloudKey into the UniFi Protect Server field.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/unifi_protect_server_ip.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After clicking Save Changes, the cameras immediately showed up for adoption. Maybe if I had tried this from the start they would have shown up without the need to flash new firmware, but if I remember correctly I tried this on my G3 Bullet cameras and they did not show up…&lt;/p&gt;
+
+&lt;p&gt;Who knows, but that was a painful time for brand new units! Seems they were old stock being cleared out, and we were the unlucky recipients.&lt;/p&gt;
+
+&lt;p&gt;If only UniFi Protect could detect and update cameras with UniFi Video firmware automatically!&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.reddit.com/r/Ubiquiti/comments/kmgbmp/uvc_g3_dome_not_able_to_adopt&quot;&gt;https://reddit.com/r/Ubiquiti/comments/kmgbmp/uvc_g3_dome_not_able_to_adopt&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://community.ui.com/questions/where-I-can-find-the-latest-firmware-version/edfffa83-b954-4fd8-ade3-0a806ce45565&quot;&gt;https://community.ui.com/questions/where-I-can-find-the-latest-firmware-version&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://community.ui.com/questions/New-G3-camera-doesnt-get-adopted-to-UniFi-Video-Server/aa955bfd-86d6-45c5-8982-6e41f4d8d8a7&quot;&gt;https://community.ui.com/questions/New-G3-camera-doesnt-get-adopted-to-UniFi-Video-Server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Liam Cottle</name></author><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://blog.liamcottle.com/assets/images/2023/11/30/unifi_video_upgrade_to_protect.png" /><media:content medium="image" url="https://blog.liamcottle.com/assets/images/2023/11/30/unifi_video_upgrade_to_protect.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">My first QSO via the ISS</title><link href="https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss" rel="alternate" type="text/html" title="My first QSO via the ISS" /><published>2023-08-16T10:00:00+00:00</published><updated>2023-08-16T10:00:00+00:00</updated><id>https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss</id><content type="html" xml:base="https://blog.liamcottle.com/2023/08/16/my-first-qso-via-the-iss">&lt;p&gt;&lt;a href=&quot;https://images.nasa.gov/details-s132e012208&quot;&gt;&lt;img src=&quot;/assets/images/2023/08/16/s132e012208~large.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;After obtaining my amateur radio license at the ham cram back in November last year, taught by Warren Harris, &lt;a href=&quot;https://qrz.com/db/zl2aj&quot;&gt;ZL2AJ&lt;/a&gt;, I had a goal of making a QSO through the &lt;a href=&quot;https://www.amsat.org/amateur-radio-on-the-iss/&quot;&gt;International Space Station Amateur Radio repeater&lt;/a&gt;.&lt;/p&gt;
 
