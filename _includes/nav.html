@@ -5,7 +5,12 @@
 
                 <a href="{{ site.url | relative_url }}" class="flex-shrink-0 flex items-center font-medium">
                     <img class="rounded-full w-8 h-8 mr-3" src="{{ site.author.avatar | relative_url }}">
-                    <h1>{{ site.title }}</h1>
+                    <div>
+                        <h1>{{ site.title }}</h1>
+                        {% if site.subtitle != nil %}
+                        <h2 class="text-xs text-gray-600">{{ site.subtitle }}</h2>
+                        {% endif %}
+                    </div>
                 </a>
 
                 <div class="ml-auto flex space-x-2 print:hidden">

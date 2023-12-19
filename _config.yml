@@ -1,6 +1,7 @@
 url: "https://blog.liamcottle.com"
 baseurl: ""
 title: "Liam Cottle's Blog"
+subtitle: "🇳🇿 New Zealand"
 description: "Rambles from a self taught Software Engineer"
 image: "assets/images/avatar.jpg"
 permalink: ":year/:month/:day/:title"
