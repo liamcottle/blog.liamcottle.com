@@ -17,6 +17,7 @@ module.exports = {
                 github: '#333333',
                 reddit: '#FF4500',
                 twitter: '#1DA1F2',
+                paypal: '#0070BA',
             },
         },
     },
