@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2023-12-24 03:45:00 +1300
+date: 2023-12-25 03:45:00 +1300
 title: "UniFi Protect Camera FOV List"
 description: "A handy list of UniFi Protect cameras and their FOV angles"
 image: "assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png"
