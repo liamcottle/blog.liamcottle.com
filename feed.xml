@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2023-12-24T11:58:56+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">Adopting old UniFi Video cameras into UniFi Protect</title><link href="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect" rel="alternate" type="text/html" title="Adopting old UniFi Video cameras into UniFi Protect" /><published>2023-11-30T09:30:00+00:00</published><updated>2023-11-30T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect</id><content type="html" xml:base="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect">&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/unifi_video_upgrade_to_protect.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2023-12-24T14:51:03+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">UniFi Protect Camera FOV List</title><link href="https://blog.liamcottle.com/2023/12/23/unifi-protect-camera-fov-list" rel="alternate" type="text/html" title="UniFi Protect Camera FOV List" /><published>2023-12-23T14:45:00+00:00</published><updated>2023-12-23T14:45:00+00:00</updated><id>https://blog.liamcottle.com/2023/12/23/unifi-protect-camera-fov-list</id><content type="html" xml:base="https://blog.liamcottle.com/2023/12/23/unifi-protect-camera-fov-list">&lt;p&gt;&lt;a href=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot;&gt;&lt;img src=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Over the last few weeks, I’ve been comparing the viewing angles of the UniFi Protect cameras.&lt;/p&gt;
+
+&lt;p&gt;I have a range of these devices installed at various sites, but have wanted a quick way to find the camera with the best FOV for the job.&lt;/p&gt;
+
+&lt;p&gt;Instead of searching for the datasheets over and over, I’ve compiled this handy spreadsheet as a quick reference.&lt;/p&gt;
+
+&lt;h2 id=&quot;view-full-spreadsheet&quot;&gt;View Full Spreadsheet&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/19gWNBV_4kvnsmdj-uHUA7X1D9HkFqJnvlsn1I7_AbX4/edit?usp=sharing&quot;&gt;https://docs.google.com/spreadsheets/d/19gWNBV_4kvnsmdj-uHUA7X1D9HkFqJnvlsn1I7_AbX4/edit?usp=sharing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ubnt.com/datasheets/unifi/UniFi_Video_G3_DS.pdf&quot;&gt;https://dl.ui.com/datasheets/unifi/UniFi_Video_G3_DS.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ubnt.com/ds/uvc-g4-bullet-ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g4-bullet-ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ubnt.com/ds/uvc-g4-dome-ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g4-dome-ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g4-doorbell-ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g4-doorbell-ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g4-ins_ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g4-ins_ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ubnt.com/datasheets/unifi/UVC-G4-PRO_DS.pdf&quot;&gt;https://dl.ui.com/datasheets/unifi/UVC-G4-PRO_DS.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g5-bullet_ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g5-bullet_ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g5-dome_ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g5-dome_ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g5-flex_ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g5-flex_ds.pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.ui.com/ds/uvc-g5-pro_ds.pdf&quot;&gt;https://dl.ui.com/ds/uvc-g5-pro_ds.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Liam Cottle</name></author><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://blog.liamcottle.com/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png" /><media:content medium="image" url="https://blog.liamcottle.com/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Adopting old UniFi Video cameras into UniFi Protect</title><link href="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect" rel="alternate" type="text/html" title="Adopting old UniFi Video cameras into UniFi Protect" /><published>2023-11-30T09:30:00+00:00</published><updated>2023-11-30T09:30:00+00:00</updated><id>https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect</id><content type="html" xml:base="https://blog.liamcottle.com/2023/11/30/adopting-old-unifi-video-camera-into-unifi-protect">&lt;p&gt;&lt;img src=&quot;/assets/images/2023/11/30/unifi_video_upgrade_to_protect.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A few days ago, I was contacted by a friend who had just purchased 4 brand new &lt;a href=&quot;https://store.ui.com/us/en/products/uvc-g3-flex&quot;&gt;UniFi G3 Flex&lt;/a&gt; cameras from a &lt;a href=&quot;https://www.pbtech.co.nz/product/CCTUBI80313/Ubiquiti-UniFi-Protect-UVC-G3-FLEX-1080p-IndoorOut&quot;&gt;New Zealand based supplier&lt;/a&gt;.&lt;/p&gt;
 
