@@ -70,4 +70,12 @@
         @apply overflow-x-scroll p-3;
     }
 
+    /* force preformatted content to wrap in print mode */
+    @media print {
+        pre {
+            text-wrap: wrap;
+            white-space: pre-wrap;
+        }
+    }
+
 }
