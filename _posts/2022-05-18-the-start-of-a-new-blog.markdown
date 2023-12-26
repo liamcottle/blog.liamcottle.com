@@ -3,6 +3,7 @@ layout: post
 date: 2022-05-18 23:30:00 +1200
 title: "The start of a new blog"
 description: "So, let's try this blogging thing, huh?"
+pinned: true
 ---
 
 I've always wanted to start a blog, but have never actually made the effort to put one together. So here we are, the first post on a fresh new blog!
