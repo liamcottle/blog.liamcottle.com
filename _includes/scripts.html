@@ -61,4 +61,22 @@
         useLightTheme();
     }
 
+    /* we want to force light theme when printing */
+
+    var didChangeThemeForPrint = false;
+
+    window.onbeforeprint = function() {
+        if(prefersDarkTheme()){
+            didChangeThemeForPrint = true;
+            useLightTheme();
+        }
+    };
+
+    window.onafterprint = function() {
+        if(didChangeThemeForPrint){
+            useDarkTheme();
+            didChangeThemeForPrint = false;
+        }
+    };
+
 </script>
