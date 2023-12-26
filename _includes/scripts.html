@@ -80,3 +80,24 @@
     };
 
 </script>
+
+<!-- scroll progress -->
+<script>
+
+    function getScrollPercentage() {
+        var element = document.documentElement;
+        var body = document.body;
+        var scrollTop = 'scrollTop';
+        var scrollHeight = 'scrollHeight';
+        return (element[scrollTop]||body[scrollTop]) / ((element[scrollHeight]||body[scrollHeight]) - element.clientHeight) * 100;
+    }
+
+    document.addEventListener("scroll", function() {
+        var progressBar = document.getElementById("progress-bar");
+        if(progressBar){
+            var scrollPercentage = getScrollPercentage();
+            progressBar.style.width = scrollPercentage + "%";
+        }
+    });
+
+</script>
