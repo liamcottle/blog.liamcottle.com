@@ -78,4 +78,12 @@
         }
     }
 
+    /* make sure background colours are shown in print mode */
+    @media print {
+        body {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+    }
+
 }
