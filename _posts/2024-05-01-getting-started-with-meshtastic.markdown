@@ -43,7 +43,7 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Max transmit power 22dBm (~150mW)
 - Pro: Includes a GPS module, and can send its own position to the mesh without needing to be connected to any other devices
 - Pro: Supports connecting via Bluetooth and WiFi
-- Pro: Has a reasonable stock antenna, I can send/receive with my hilltop node (photo attached below) even with the antenna lying sideways on the seat inside my car.
+- Pro: Has a reasonable stock antenna, I can send/receive with my [hilltop node](/assets/images/2024/05/01/meshtastic_node.jpg) even with the antenna lying sideways on the seat inside my car.
 - Pro: You can replace the antenna, the board uses an IPEX connector.
 - Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it
 - Con: Does not include a plastic case, and seems to be hard to find any 3D printed cases online
