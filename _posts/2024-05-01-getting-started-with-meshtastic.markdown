@@ -5,6 +5,7 @@ title: "Getting started with Meshtastic"
 description: "A few recommendations and opinions on what hardware to use when getting started with Meshtastic"
 image: "assets/images/2024/05/01/meshtastic.png"
 ---
+![](/assets/images/2024/05/01/meshtastic_node.jpg)
 
 Over the last few months, I've been playing with [Meshtastic](https://meshtastic.org/), an open-source "mesh" based long-range communications app (and firmware) based on [LoRa](https://en.wikipedia.org/wiki/LoRa) that runs on microcontroller development boards that you can pick up pretty cheap on [AliExpress](https://www.aliexpress.com/).
 
