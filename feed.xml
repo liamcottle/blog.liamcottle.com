@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2024-01-15T01:18:50+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">UniFi Protect Camera FOV List</title><link href="https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list" rel="alternate" type="text/html" title="UniFi Protect Camera FOV List" /><published>2023-12-24T14:45:00+00:00</published><updated>2023-12-24T14:45:00+00:00</updated><id>https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list</id><content type="html" xml:base="https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list">&lt;p&gt;&lt;a href=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot;&gt;&lt;img src=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2024-05-01T00:49:45+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">Getting started with Meshtastic</title><link href="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic" rel="alternate" type="text/html" title="Getting started with Meshtastic" /><published>2024-05-01T00:00:00+00:00</published><updated>2024-05-01T00:00:00+00:00</updated><id>https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic</id><content type="html" xml:base="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic">&lt;p&gt;Over the last few months, I’ve been playing with &lt;a href=&quot;https://meshtastic.org/&quot;&gt;Meshtastic&lt;/a&gt;, an open-source “mesh” based long-range communications app (and firmware) based on &lt;a href=&quot;https://en.wikipedia.org/wiki/LoRa&quot;&gt;LoRa&lt;/a&gt; that runs on microcontroller development boards that you can pick up pretty cheap on &lt;a href=&quot;https://www.aliexpress.com/&quot;&gt;AliExpress&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I decided to put this blog post together as I’ve been sending out various email replies with my recommendations, but think it will be good to put it all in one place, where it can be easily shared, and I can update it over time.&lt;/p&gt;
+
+&lt;p&gt;Below is a list of the devices I have used with Meshtastic, along with my comments for what they’re good at, and what they’re bad at.&lt;/p&gt;
+
+&lt;p&gt;Note that all my recommendations for frequencies and antennas are based on the New Zealand requirements.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Heltec v3&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;NZD $35 on AliExpress (add $5 for a plastic case)&lt;/li&gt;
+  &lt;li&gt;You will want the 902-928MHz version for New Zealand&lt;/li&gt;
+  &lt;li&gt;Max transmit power 22dBm (~150mW)&lt;/li&gt;
+  &lt;li&gt;Pro: Has a reasonable case&lt;/li&gt;
+  &lt;li&gt;Pro: Cheapest unit you can buy&lt;/li&gt;
+  &lt;li&gt;Pro: Supports connecting via Bluetooth and WiFi&lt;/li&gt;
+  &lt;li&gt;Pro: You can replace the antenna, the board uses an IPEX connector. This will greatly increase the range&lt;/li&gt;
+  &lt;li&gt;Con: Has a terrible stock antenna, you will struggle to send/receive unless you are very close to other devices&lt;/li&gt;
+  &lt;li&gt;Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it&lt;/li&gt;
+  &lt;li&gt;Con: Does not have a GPS module, but you can share your position from your mobile phone GPS, or set a fixed position in settings&lt;/li&gt;
+  &lt;li&gt;Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it’s too power hungry for using as a solar node&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.aliexpress.com/item/1005005443005152.html&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Heltec Wireless Tracker&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;NZD $40 on AliExpress (does not include a case)&lt;/li&gt;
+  &lt;li&gt;You will want the 902-928MHz version for New Zealand&lt;/li&gt;
+  &lt;li&gt;Max transmit power 22dBm (~150mW)&lt;/li&gt;
+  &lt;li&gt;Pro: Includes a GPS module, and can send its own position to the mesh without needing to be connected to any other devices&lt;/li&gt;
+  &lt;li&gt;Pro: Supports connecting via Bluetooth and WiFi&lt;/li&gt;
+  &lt;li&gt;Pro: Has a reasonable stock antenna, I can send/receive with my hilltop node (photo attached below) even with the antenna lying sideways on the seat inside my car.&lt;/li&gt;
+  &lt;li&gt;Pro: You can replace the antenna, the board uses an IPEX connector.&lt;/li&gt;
+  &lt;li&gt;Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it&lt;/li&gt;
+  &lt;li&gt;Con: Does not include a plastic case, and seems to be hard to find any 3D printed cases online&lt;/li&gt;
+  &lt;li&gt;Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it’s too power hungry for using as a solar node&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.aliexpress.com/item/1005005681504175.html&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;RAK Wireless: Meshtastic Starter Kit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;NZD $40 on RAK Wireless website (excluding shipping)&lt;/li&gt;
+  &lt;li&gt;You will want the 900MHz (AU915) version for New Zealand&lt;/li&gt;
+  &lt;li&gt;Includes 1x WisBlock Base (RAK19007), 1x WisBlock Core (RAK4631), 1x LoRa Antenna, 1x BLE Antenna&lt;/li&gt;
+  &lt;li&gt;Max LoRa transmit power 22dBm (~150mW)&lt;/li&gt;
+  &lt;li&gt;Max Bluetooth transmit power 4dBm (~2.5mW)&lt;/li&gt;
+  &lt;li&gt;Does not include a GPS module by default, buy you can purchase separately and easily clip on to base board&lt;/li&gt;
+  &lt;li&gt;Pro: Supports connecting via Bluetooth&lt;/li&gt;
+  &lt;li&gt;Pro: Has reasonable stock antennas. The stock bluetooth antenna gets very good range&lt;/li&gt;
+  &lt;li&gt;Pro: You can replace both the LoRa and Bluetooth antennas, the board uses IPEX connectors&lt;/li&gt;
+  &lt;li&gt;Pro: Not based on ESP32, and only sips ~2mA continuously while idling (excluding transmitting), so it’s perfect for using as a solar node with 18650 lithium cells&lt;/li&gt;
+  &lt;li&gt;Con: Does not include WiFi&lt;/li&gt;
+  &lt;li&gt;Con: Does not include a plastic case, however there are many enclosures available to buy or 3D print&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet&quot;&gt;View Datasheet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit?variant=43623312588998&quot;&gt;Buy from RAK Wireless&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Antenna Recommendations&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;RAK Wireless: Blade Antenna&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;NZD $10 (excluding shipping)&lt;/li&gt;
+  &lt;li&gt;You will want the 902-928MHz version for New Zealand&lt;/li&gt;
+  &lt;li&gt;Max Gain: 2.3 dBi&lt;/li&gt;
+  &lt;li&gt;VSWR: ≤ 1.5&lt;/li&gt;
+  &lt;li&gt;Vertically polarized&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.rakwireless.com/Product-Categories/Accessories/RAKARJ16/Overview/&quot;&gt;View Datasheet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://store.rakwireless.com/products/blade-antenna?variant=40475440939206&quot;&gt;Buy from RAK Wireless&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Delivery Timeframes&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;AliExpress usually has my orders delivered from China to New Zealand within 7-10 days.&lt;/li&gt;
+  &lt;li&gt;RAK Wireless delivered from China to New Zealand in 13 days. However, I was not sent a tracking link until 10 days after ordering.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Meshtastic Map&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I have built an open-source web based map for Meshtastic. It shows all the nodes heard on the public MQTT server, and allows for viewing their metrics and status.&lt;/p&gt;
+
+&lt;p&gt;It is optimised for viewing on mobile devices, and allows you to share a direct link to your node.&lt;/p&gt;
+
+&lt;p&gt;You can view my online map here:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://meshtastic.liamcottle.net&quot;&gt;https://meshtastic.liamcottle.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you’d like to view the source code, or host it yourself, you can find it on GitHub:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/liamcottle/meshtastic-map&quot;&gt;https://github.com/liamcottle/meshtastic-map&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Public Meshtastic Groups&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Facebook: &lt;a href=&quot;https://www.facebook.com/groups/730536684339042&quot;&gt;Meshtastic&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Facebook: &lt;a href=&quot;https://www.facebook.com/groups/731677999061283&quot;&gt;Meshtastic NZ&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Discord &lt;a href=&quot;https://discord.com/invite/ktMAKGBnBs&quot;&gt;Meshtastic&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;reticulum&quot;&gt;Reticulum?&lt;/h2&gt;
+
+&lt;p&gt;Another interesting project I’m tinkering around with is Reticulum. I may write up a blog post on this sometime in the future.
+In the meantime, feel free to check it out.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://reticulum.network/&quot;&gt;https://reticulum.network/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://unsigned.io/rnode&quot;&gt;https://unsigned.io/rnode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://unsigned.io/private-messaging-over-lora/&quot;&gt;https://unsigned.io/private-messaging-over-lora/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/markqvist/Reticulum&quot;&gt;https://github.com/markqvist/Reticulum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I recently released an open source web chat interface for this project.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/liamcottle/reticulum-webchat&quot;&gt;https://github.com/liamcottle/reticulum-webchat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Liam Cottle</name></author><summary type="html">Over the last few months, I’ve been playing with Meshtastic, an open-source “mesh” based long-range communications app (and firmware) based on LoRa that runs on microcontroller development boards that you can pick up pretty cheap on AliExpress.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://blog.liamcottle.com/assets/images/2024/05/01/meshtastic.png" /><media:content medium="image" url="https://blog.liamcottle.com/assets/images/2024/05/01/meshtastic.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">UniFi Protect Camera FOV List</title><link href="https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list" rel="alternate" type="text/html" title="UniFi Protect Camera FOV List" /><published>2023-12-24T14:45:00+00:00</published><updated>2023-12-24T14:45:00+00:00</updated><id>https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list</id><content type="html" xml:base="https://blog.liamcottle.com/2023/12/24/unifi-protect-camera-fov-list">&lt;p&gt;&lt;a href=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot;&gt;&lt;img src=&quot;/assets/images/2023/12/25/unifi_protect_camera_fov_list_spreadsheet.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Over the last few weeks, I’ve been comparing the viewing angles of the UniFi Protect cameras.&lt;/p&gt;
 
