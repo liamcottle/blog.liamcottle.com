@@ -14,6 +14,12 @@ Below is a list of the devices I have used with Meshtastic, along with my commen
 
 Note that all my recommendations for frequencies and antennas are based on the New Zealand requirements.
 
+**TLDR**
+
+- If you want a cheap, basic device, to use with your phone, grab the Heltec v3.
+- If you want GPS and don't care for a nice enclosure, get the Heltec Wireless Tracker.
+- If you want to build a low power, solar node powered by batteries, get the RAK Wireless boards.
+
 **Heltec v3**
 
 - NZD $35 on AliExpress (add $5 for a plastic case)
