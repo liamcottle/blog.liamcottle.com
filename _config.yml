@@ -26,6 +26,7 @@ paypal_url: "https://paypal.me/liamcarncottle"
 
 # analytics
 google_analytics_measurement_id: "G-S3724X6D5M"
+hitsteps_tracking_id: "d3f1847a76c4933f532da4ae84a36a0be183b"
 
 plugins:
   - jekyll-feed

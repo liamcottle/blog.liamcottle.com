@@ -9,6 +9,13 @@
 </script>
 {% endif %}
 
+{% if site.hitsteps_tracking_id != nil %}
+<!-- Hitsteps TRACKING CODE - Manual 2024-05-15 - DO NOT CHANGE -->
+<script type="text/javascript">(function(){var hstc=document.createElement('script'); hstc.src='https://edgecdn.dev/code?code={{ site.hitsteps_tracking_id }}';hstc.async=true;var htssc = document.getElementsByTagName('script')[0];htssc.parentNode.insertBefore(hstc, htssc);})();
+</script><noscript><a href="http://www.hitsteps.com/"><img src="//edgecdn.dev/code?mode=img&amp;code={{ site.hitsteps_tracking_id }}" alt="web stats" width="1" height="1" />visitor activity monitoring</a></noscript>
+<!-- Hitsteps TRACKING CODE - DO NOT CHANGE -->
+{% endif %}
+
 <!-- tooltips -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
