@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2024-05-15T14:11:47+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">Getting started with Meshtastic</title><link href="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic" rel="alternate" type="text/html" title="Getting started with Meshtastic" /><published>2024-05-01T00:00:00+00:00</published><updated>2024-05-01T00:00:00+00:00</updated><id>https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic</id><content type="html" xml:base="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic">&lt;p&gt;&lt;img src=&quot;/assets/images/2024/05/01/meshtastic_node.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://blog.liamcottle.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.liamcottle.com/" rel="alternate" type="text/html" /><updated>2024-05-17T14:15:51+00:00</updated><id>https://blog.liamcottle.com/feed.xml</id><title type="html">Liam Cottle’s Blog</title><subtitle>Rambles from a self taught Software Engineer</subtitle><author><name>Liam Cottle</name></author><entry><title type="html">Getting started with Meshtastic</title><link href="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic" rel="alternate" type="text/html" title="Getting started with Meshtastic" /><published>2024-05-01T00:00:00+00:00</published><updated>2024-05-01T00:00:00+00:00</updated><id>https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic</id><content type="html" xml:base="https://blog.liamcottle.com/2024/05/01/getting-started-with-meshtastic">&lt;p&gt;&lt;img src=&quot;/assets/images/2024/05/01/meshtastic_node.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Over the last few months, I’ve been playing with &lt;a href=&quot;https://meshtastic.org/&quot;&gt;Meshtastic&lt;/a&gt;, an open-source “mesh” based long-range communications app (and firmware) based on &lt;a href=&quot;https://en.wikipedia.org/wiki/LoRa&quot;&gt;LoRa&lt;/a&gt; that runs on microcontroller development boards that you can pick up pretty cheap on &lt;a href=&quot;https://www.aliexpress.com/&quot;&gt;AliExpress&lt;/a&gt;.&lt;/p&gt;
 
@@ -30,7 +30,7 @@
   &lt;li&gt;Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it&lt;/li&gt;
   &lt;li&gt;Con: Does not have a GPS module, but you can share your position from your mobile phone GPS, or set a fixed position in settings&lt;/li&gt;
   &lt;li&gt;Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it’s too power hungry for using as a solar node&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.aliexpress.com/item/1005005443005152.html&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://s.click.aliexpress.com/e/_Dkn5miP&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Heltec Wireless Tracker&lt;/strong&gt;&lt;/p&gt;
@@ -46,7 +46,7 @@
   &lt;li&gt;Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it&lt;/li&gt;
   &lt;li&gt;Con: Does not include a plastic case, and seems to be hard to find any 3D printed cases online&lt;/li&gt;
   &lt;li&gt;Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it’s too power hungry for using as a solar node&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.aliexpress.com/item/1005005681504175.html&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://s.click.aliexpress.com/e/_DEgvwk3&quot;&gt;Buy from AliExpress&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;RAK Wireless: Meshtastic Starter Kit&lt;/strong&gt;&lt;/p&gt;
