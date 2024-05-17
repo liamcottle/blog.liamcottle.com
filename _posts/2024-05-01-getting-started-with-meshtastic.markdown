@@ -34,7 +34,7 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it
 - Con: Does not have a GPS module, but you can share your position from your mobile phone GPS, or set a fixed position in settings
 - Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it's too power hungry for using as a solar node
-- [Buy from AliExpress](https://www.aliexpress.com/item/1005005443005152.html)
+- [Buy from AliExpress](https://s.click.aliexpress.com/e/_Dkn5miP)
 
 **Heltec Wireless Tracker**
 
@@ -48,7 +48,7 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Con: Has a terrible soldered Bluetooth antenna. Bluetooth range will be poor. You would need to solder the board to replace it
 - Con: Does not include a plastic case, and seems to be hard to find any 3D printed cases online
 - Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it's too power hungry for using as a solar node
-- [Buy from AliExpress](https://www.aliexpress.com/item/1005005681504175.html)
+- [Buy from AliExpress](https://s.click.aliexpress.com/e/_DEgvwk3)
 
 **RAK Wireless: Meshtastic Starter Kit**
 
