@@ -65,7 +65,7 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Con: Does not include WiFi
 - Con: Does not include a plastic case, however there are many enclosures available to buy or 3D print
 - [View Datasheet](https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet)
-- [Buy from RAK Wireless](https://store.rakwireless.com/products/wisblock-meshtastic-starter-kit?variant=43623312588998)
+- [Buy from RAK Wireless](https://rakwireless.kckb.st/liamcottle-bcy)
 
 **Antenna Recommendations**
 
@@ -76,7 +76,7 @@ RAK Wireless: Blade Antenna
 - VSWR: ≤ 1.5
 - Vertically polarized
 - [View Datasheet](https://docs.rakwireless.com/Product-Categories/Accessories/RAKARJ16/Overview/)
-- [Buy from RAK Wireless](https://store.rakwireless.com/products/blade-antenna?variant=40475440939206)
+- [Buy from RAK Wireless](https://rakwireless.kckb.st/liamcottle-hg2)
 
 **Delivery Timeframes**
 
