@@ -62,10 +62,12 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Pro: Has reasonable stock antennas. The stock bluetooth antenna gets very good range
 - Pro: You can replace both the LoRa and Bluetooth antennas, the board uses IPEX connectors
 - Pro: Not based on ESP32, and only sips ~2mA continuously while idling (excluding transmitting), so it's perfect for using as a solar node with 18650 lithium cells
+- Pro: Can be put inside [an awesome 3D printable case](https://www.printables.com/model/623484-rak-meshtastic-starter-kit-no-additional-hardware), designed by @pdxlocs on printables.com
 - Con: Does not include WiFi
 - Con: Does not include a plastic case, however there are many enclosures available to buy or 3D print
 - [View Datasheet](https://docs.rakwireless.com/Product-Categories/WisBlock/RAK4631/Datasheet)
 - [Buy from RAK Wireless](https://rakwireless.kckb.st/liamcottle-bcy)
+- [Download 3D Printable Case](https://www.printables.com/model/623484-rak-meshtastic-starter-kit-no-additional-hardware)
 
 **Antenna Recommendations**
 
