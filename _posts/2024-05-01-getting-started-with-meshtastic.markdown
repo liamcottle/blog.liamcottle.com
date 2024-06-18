@@ -21,6 +21,10 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - If you want GPS and don't care for a nice enclosure, get the Heltec Wireless Tracker.
 - If you want to build a low power, solar node powered by batteries, get the RAK Wireless boards.
 
+---
+
+![](/assets/images/2024/05/01/heltec_v3.jpg)
+
 **Heltec v3**
 
 - NZD $35 on AliExpress (add $5 for a plastic case)
@@ -36,6 +40,10 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it's too power hungry for using as a solar node
 - [Buy from AliExpress](https://s.click.aliexpress.com/e/_Dkn5miP)
 
+---
+
+![](/assets/images/2024/05/01/heltec_wireless_tracker.jpg)
+
 **Heltec Wireless Tracker**
 
 - NZD $40 on AliExpress (does not include a case)
@@ -49,6 +57,11 @@ Note that all my recommendations for frequencies and antennas are based on the N
 - Con: Does not include a plastic case, and seems to be hard to find any 3D printed cases online
 - Con: ESP32 based, so it draws ~100mA continuously while idling, even when not transmitting, so it's too power hungry for using as a solar node
 - [Buy from AliExpress](https://s.click.aliexpress.com/e/_DEgvwk3)
+
+---
+
+![](/assets/images/2024/05/01/rak4631_pocket_node.jpg)
+![](/assets/images/2024/05/01/rak4631_pocket_nodes.jpg)
 
 **RAK Wireless: Meshtastic Starter Kit**
 
