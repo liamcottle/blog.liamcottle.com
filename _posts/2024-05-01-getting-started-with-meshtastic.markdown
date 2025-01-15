@@ -118,6 +118,11 @@ If you'd like to view the source code, or host it yourself, you can find it on G
 - Facebook: [Meshtastic NZ](https://www.facebook.com/groups/731677999061283)
 - Discord [Meshtastic](https://discord.com/invite/ktMAKGBnBs)
 
+**Resources**
+
+- [Meshtastic Presentation Slides](https://docs.google.com/presentation/d/15zIRD4zakf1HaIG4gyyqWHt6SYz4oter5oT2-RXNtfk/edit?usp=sharing)
+- [Meshtastic Quick Start Resources](https://docs.google.com/document/d/18Cs-YXFZI5GWUGDQ_0BT9vXGWsA36sCYyXHMHQG7p3I/edit?usp=sharing)
+
 ## Reticulum?
 
 Another interesting project I'm tinkering around with is Reticulum. I may write up a blog post on this sometime in the future.
